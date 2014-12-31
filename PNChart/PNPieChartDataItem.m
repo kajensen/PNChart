@@ -27,4 +27,12 @@
 	return item;
 }
 
++ (instancetype)dataItemWithValue:(CGFloat)value
+                            color:(UIColor*)color
+                            image:(UIImage *)image{
+    PNPieChartDataItem *item = [PNPieChartDataItem dataItemWithValue:value color:color];
+    item.imageDescription = image;
+    return item;
+}
+
 @end

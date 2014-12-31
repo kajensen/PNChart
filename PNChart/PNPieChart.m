@@ -23,6 +23,7 @@
 
 - (void)loadDefault;
 
+- (UIImageView *)descriptionImageViewForItemAtIndex:(NSUInteger)index;
 - (UILabel *)descriptionLabelForItemAtIndex:(NSUInteger)index;
 - (PNPieChartDataItem *)dataItemForIndex:(NSUInteger)index;
 
@@ -108,11 +109,46 @@
 	currentValue = 0;
     for (int i = 0; i < _items.count; i++) {
 		currentItem = [self dataItemForIndex:i];
-		UILabel *descriptionLabel =  [self descriptionLabelForItemAtIndex:i];
-		[_contentView addSubview:descriptionLabel];
+        id descriptionLabel = nil;
+        descriptionLabel = [self descriptionImageViewForItemAtIndex:i];
+        if (descriptionLabel) {
+            [_contentView addSubview:descriptionLabel];
+        }
+        else {
+            descriptionLabel =  [self descriptionLabelForItemAtIndex:i];
+            [_contentView addSubview:descriptionLabel];
+        }
+
 		currentValue+=currentItem.value;
         [_descriptionLabels addObject:descriptionLabel];
 	}
+}
+
+- (UIImageView *)descriptionImageViewForItemAtIndex:(NSUInteger)index{
+    PNPieChartDataItem *currentDataItem = [self dataItemForIndex:index];
+    CGFloat distance = _innerCircleRadius + (_outerCircleRadius - _innerCircleRadius) / 2;
+    CGFloat centerPercentage =(_currentTotal + currentDataItem.value /2 ) / _total;
+    CGFloat rad = centerPercentage * 2 * M_PI;
+    
+    _currentTotal += currentDataItem.value;
+    
+    UIImage *imageDescripton = currentDataItem.imageDescription;
+    if(!imageDescripton){
+        return nil; //to tellit to return descriptionLabel
+    }
+    
+    CGPoint center = CGPointMake(_outerCircleRadius + distance * sin(rad),
+                                 _outerCircleRadius - distance * cos(rad));
+    
+    CGRect frame;
+    frame = CGRectMake(0, 0, 30, 30);
+    
+    UIImageView *descriptionImageView = [[UIImageView alloc] initWithFrame:frame];
+    [descriptionImageView setImage:imageDescripton];
+    [descriptionImageView setCenter:center];
+    [descriptionImageView setAlpha:0];
+    
+    return descriptionImageView;
 }
 
 - (UILabel *)descriptionLabelForItemAtIndex:(NSUInteger)index{
@@ -123,6 +159,7 @@
     
 	_currentTotal += currentDataItem.value;
 	
+    
     UILabel *descriptionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 80)];
     NSString *titleText = currentDataItem.textDescription;
     if(!titleText){

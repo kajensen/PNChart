@@ -17,8 +17,13 @@
                             color:(UIColor*)color
                       description:(NSString *)description;
 
++ (instancetype)dataItemWithValue:(CGFloat)value
+                            color:(UIColor*)color
+                            image:(UIImage *)image;
+
 @property (nonatomic) CGFloat   value;
 @property (nonatomic) UIColor  *color;
 @property (nonatomic) NSString *textDescription;
+@property (nonatomic) UIImage *imageDescription;
 
 @end
