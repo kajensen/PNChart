@@ -19,6 +19,8 @@
 
 @property (nonatomic) NSMutableArray *chartPath;       // Array of line path, one for each line.
 @property (nonatomic) NSMutableArray *pointPath;       // Array of point path, one for each line
+@property (nonatomic) CGFloat yLabelHeight;
+@property (nonatomic) CGFloat chartMargin;
 
 @end
 

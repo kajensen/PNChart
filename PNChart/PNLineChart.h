@@ -39,12 +39,10 @@
 @property (nonatomic) CGFloat yFixedValueMin;
 @property (nonatomic) CGFloat yValueMin;
 @property (nonatomic) NSInteger yLabelNum;
-@property (nonatomic) CGFloat yLabelHeight;
 @property (nonatomic) UIFont *yLabelFont;
 @property (nonatomic) UIColor *yLabelColor;
 @property (nonatomic) CGFloat chartCavanHeight;
 @property (nonatomic) CGFloat chartCavanWidth;
-@property (nonatomic) CGFloat chartMargin;
 @property (nonatomic) BOOL showLabel;
 
 /**
