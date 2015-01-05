@@ -119,7 +119,7 @@ CGFloat getAngleBetweenThreePoints(CGPoint centerPoint, CGPoint p1, CGPoint p2);
     _gradeLabel.method = UILabelCountingMethodEaseInOut;
     _gradeLabel.format = @"%d";
     
-    [self addSubview:_gradeLabel];
+    //[self addSubview:_gradeLabel];
     
     //Add circle params
     
