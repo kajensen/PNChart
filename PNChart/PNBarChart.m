@@ -85,7 +85,7 @@
         
         float yLabelSectionHeight = (self.frame.size.height - _chartMargin * 2 - xLabelHeight) / _yLabelSum;
         
-        for (int index = 0; index < _yLabelSum; index++) {
+        /*for (int index = 0; index < _yLabelSum; index++) {
             
             NSString *labelText = _yLabelFormatter((float)_yValueMax * ( (_yLabelSum - index) / (float)_yLabelSum ));
             
@@ -101,7 +101,7 @@
             [_yChartLabels addObject:label];
             [self addSubview:label];
             
-        }
+        }*/
     }
 }
 
